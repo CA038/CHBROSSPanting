@@ -322,6 +322,7 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     transition: all 0.3s ease;
     cursor: pointer;
+    transform-origin: center;
 }
 
 .project-card:hover {
@@ -332,9 +333,9 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90vw;
-    height: 90vh;
+    transform: translate(-50%, -50%) scale(2);
+    width: 45vw;
+    height: 45vh;
     z-index: 1000;
     background: var(--white);
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
@@ -358,13 +359,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .project-card.expanded .project-info h3 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin-bottom: 1rem;
     color: var(--black);
 }
 
 .project-card.expanded .project-info p {
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     line-height: 1.6;
     color: var(--black);
 }
@@ -1386,4 +1387,29 @@ h1, h2, h3, h4, h5, h6 {
     background: rgba(0, 0, 0, 0.8);
     z-index: 999;
     backdrop-filter: blur(5px);
+}
+
+/* Media queries para proyectos */
+@media (max-width: 1024px) {
+    .project-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .project-card.expanded {
+        transform: translate(-50%, -50%) scale(1.8);
+        width: 50vw;
+        height: 50vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-gallery {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-card.expanded {
+        transform: translate(-50%, -50%) scale(1.5);
+        width: 80vw;
+        height: 80vh;
+    }
 } 
