@@ -133,7 +133,7 @@ h1, h2, h3, h4, h5, h6 {
 .hero-content {
     max-width: 800px;
     margin: 0 auto;
-    color: var(--black);
+    color: var(--white);
 }
 
 .hero-logo {
@@ -161,7 +161,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1rem;
     font-weight: 700;
     letter-spacing: 2px;
-    color: var(--black);
+    color: var(--white);
 }
 
 .hero-content p {
@@ -170,7 +170,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     text-transform: none;
-    color: var(--black);
+    color: var(--white);
 }
 
 .cta-button {
@@ -598,12 +598,56 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Ajustes generales para todos los tamaños */
 @media (max-width: 768px) {
+    .navbar {
+        padding: 0.5rem 1rem;
+        height: 60px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+    }
+
+    .navbar .logo img {
+        height: 40px;
+    }
+
+    .hero {
+        min-height: 100vh;
+        padding-top: 60px;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .hero-content {
+        padding: 0 1rem;
+        width: 100%;
+    }
+
+    .hero-logo {
+        width: 150px;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+        color: var(--white);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        color: var(--white);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
     .menu-toggle {
         display: block;
         z-index: 1001;
     }
 
     .nav-links {
+        display: none;
         position: fixed;
         top: 0;
         right: -100%;
@@ -611,7 +655,6 @@ h1, h2, h3, h4, h5, h6 {
         height: 100vh;
         background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(10px);
-        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -622,6 +665,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .nav-links.active {
+        display: flex;
         right: 0;
     }
 
@@ -632,6 +676,7 @@ h1, h2, h3, h4, h5, h6 {
         text-align: center;
         border-radius: 8px;
         background: rgba(255, 98, 13, 0.1);
+        color: var(--black);
     }
 
     .nav-links a:hover,
@@ -1042,15 +1087,15 @@ h1, h2, h3, h4, h5, h6 {
     .hero-content h1 {
         font-size: 2rem;
         margin-bottom: 0.8rem;
-        color: var(--black);
-        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+        color: var(--white);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
 
     .hero-content p {
         font-size: 1rem;
         margin-bottom: 1.5rem;
-        color: var(--black);
-        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+        color: var(--white);
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     }
 
     .cta-button {
@@ -1113,6 +1158,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .nav-links {
+        display: none;
         position: fixed;
         top: 0;
         right: -100%;
@@ -1120,7 +1166,6 @@ h1, h2, h3, h4, h5, h6 {
         height: 100vh;
         background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(10px);
-        display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -1131,6 +1176,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .nav-links.active {
+        display: flex;
         right: 0;
     }
 
