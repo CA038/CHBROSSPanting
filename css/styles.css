@@ -320,7 +320,7 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     aspect-ratio: 4/3;
     position: relative;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     transform-origin: center;
 }
@@ -333,17 +333,19 @@ h1, h2, h3, h4, h5, h6 {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(2);
-    width: 45vw;
-    height: 45vh;
+    transform: translate(-50%, -50%) scale(2.2);
+    width: 50vw;
+    height: 50vh;
     z-index: 1000;
     background: var(--white);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    border-radius: 20px;
 }
 
 .project-card.expanded img {
     height: 70%;
     object-fit: cover;
+    border-radius: 20px 20px 0 0;
 }
 
 .project-card.expanded .project-info {
@@ -352,20 +354,21 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     right: 0;
     background: var(--white);
-    padding: 2rem;
+    padding: 2.5rem;
     transform: none;
     height: 30%;
     overflow-y: auto;
+    border-radius: 0 0 20px 20px;
 }
 
 .project-card.expanded .project-info h3 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    margin-bottom: 1.2rem;
     color: var(--black);
 }
 
 .project-card.expanded .project-info p {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     line-height: 1.6;
     color: var(--black);
 }
@@ -1396,9 +1399,9 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .project-card.expanded {
-        transform: translate(-50%, -50%) scale(1.8);
-        width: 50vw;
-        height: 50vh;
+        transform: translate(-50%, -50%) scale(2);
+        width: 60vw;
+        height: 60vh;
     }
 }
 
@@ -1408,8 +1411,16 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .project-card.expanded {
-        transform: translate(-50%, -50%) scale(1.5);
-        width: 80vw;
+        transform: translate(-50%, -50%) scale(1.8);
+        width: 90vw;
         height: 80vh;
+    }
+
+    .project-card.expanded .project-info h3 {
+        font-size: 1.8rem;
+    }
+
+    .project-card.expanded .project-info p {
+        font-size: 1.2rem;
     }
 } 
