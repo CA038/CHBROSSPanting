@@ -97,6 +97,25 @@ h1, h2, h3, h4, h5, h6 {
     cursor: pointer;
 }
 
+/* Estilos del menú hamburguesa */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1000;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
 /* Hero Section */
 .hero {
     height: 100vh;
@@ -376,11 +395,17 @@ h1, h2, h3, h4, h5, h6 {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .submit-btn:hover {
     background: var(--orange);
+}
+
+.submit-btn:active {
+    background: var(--white);
+    color: var(--black);
+    transform: scale(0.98);
 }
 
 .contact-info {
@@ -558,8 +583,52 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Ajustes generales para todos los tamaños */
 @media (max-width: 768px) {
-    .menu-btn {
+    .menu-toggle {
         display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 80%;
+        height: 100vh;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: right 0.3s ease;
+        z-index: 999;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    /* Prevenir scroll cuando el menú está abierto */
+    body.menu-open {
+        overflow: hidden;
     }
 
     .about h2,
@@ -658,4 +727,258 @@ h1, h2, h3, h4, h5, h6 {
 .projects h2:hover::after,
 .contact h2:hover::after {
     width: 100%;
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+    .hero-content {
+        padding: 0 2rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-content {
+        padding: 0 1.5rem;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+    
+    .about-content {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .about-text {
+        width: 100%;
+    }
+    
+    .about-image {
+        width: 100%;
+        height: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 1rem;
+    }
+    
+    .navbar .logo img {
+        height: 35px;
+    }
+    
+    .hero {
+        min-height: 70vh;
+    }
+    
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero p {
+        font-size: 0.9rem;
+    }
+    
+    .cta-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .service-card {
+        padding: 1.2rem;
+    }
+    
+    .service-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .service-card p {
+        font-size: 0.9rem;
+    }
+    
+    .about-image {
+        height: 250px;
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+    
+    .contact-form button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .footer {
+        padding: 2rem 1rem;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .footer-logo img {
+        height: 40px;
+    }
+    
+    .footer-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+}
+
+/* Ajustes para dispositivos muy pequeños */
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+    
+    .hero p {
+        font-size: 0.8rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .service-card h3 {
+        font-size: 1.1rem;
+    }
+    
+    .service-card p {
+        font-size: 0.8rem;
+    }
+}
+
+/* Ajustes para dispositivos con pantalla alta */
+@media (min-height: 800px) {
+    .hero {
+        min-height: 90vh;
+    }
+    
+    .about-image {
+        height: 400px;
+    }
+}
+
+/* Ajustes para dispositivos con pantalla ancha */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1400px;
+    }
+    
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.3rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Ajustes para dispositivos con orientación horizontal */
+@media (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        min-height: 100vh;
+    }
+    
+    .navbar {
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+    }
+    
+    .hero-content {
+        padding-top: 80px;
+    }
+}
+
+/* Ajustes para dispositivos táctiles */
+@media (hover: none) {
+    .cta-button:hover,
+    .service-card:hover,
+    .contact-form button:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .navbar a:hover {
+        color: #333;
+    }
+}
+
+/* Ajustes para modo oscuro del sistema */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: #ffffff;
+    }
+    
+    .navbar {
+        background: rgba(26, 26, 26, 0.95);
+    }
+    
+    .navbar a {
+        color: #ffffff;
+    }
+    
+    .navbar a:hover {
+        color: #f0f0f0;
+    }
+    
+    .service-card {
+        background: #2d2d2d;
+    }
+    
+    .contact-form input,
+    .contact-form textarea {
+        background: #2d2d2d;
+        color: #ffffff;
+    }
+    
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+        color: #cccccc;
+    }
+}
+
+/* Ajustes para reducir movimiento */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
 } 
