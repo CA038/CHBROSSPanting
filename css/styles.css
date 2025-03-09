@@ -204,10 +204,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .about-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
-    align-items: start;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .about-text {
@@ -227,17 +228,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .about-image-container {
     width: 100%;
-    height: 100%;
-    min-height: 500px;
+    height: 400px;
     background: rgba(0, 0, 0, 0.3);
     border-radius: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 2rem;
 }
 
 .about-features {
-    grid-column: 1 / -1;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
@@ -320,57 +320,12 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     aspect-ratio: 4/3;
     position: relative;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
     cursor: pointer;
-    transform-origin: center;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
-}
-
-.project-card.expanded {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(2.2);
-    width: 50vw;
-    height: 50vh;
-    z-index: 1000;
-    background: var(--white);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-    border-radius: 20px;
-}
-
-.project-card.expanded img {
-    height: 70%;
-    object-fit: cover;
-    border-radius: 20px 20px 0 0;
-}
-
-.project-card.expanded .project-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--white);
-    padding: 2.5rem;
-    transform: none;
-    height: 30%;
-    overflow-y: auto;
-    border-radius: 0 0 20px 20px;
-}
-
-.project-card.expanded .project-info h3 {
-    font-size: 2rem;
-    margin-bottom: 1.2rem;
-    color: var(--black);
-}
-
-.project-card.expanded .project-info p {
-    font-size: 1.4rem;
-    line-height: 1.6;
-    color: var(--black);
 }
 
 .project-card img {
@@ -1315,5 +1270,125 @@ h1, h2, h3, h4, h5, h6 {
 
     .project-card.expanded .project-info p {
         font-size: 1.2rem;
+    }
+}
+
+/* Estilos para la página de detalle del proyecto */
+.project-detail {
+    padding: 8rem 5% 5rem;
+    background: var(--gray);
+}
+
+.project-detail .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.project-detail h1 {
+    font-size: 2.5rem;
+    color: var(--black);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.project-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.project-images {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.project-images img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.project-info {
+    padding: 1rem;
+}
+
+.project-info h2 {
+    font-size: 1.5rem;
+    color: var(--black);
+    margin: 1.5rem 0 1rem;
+}
+
+.project-info p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--black);
+    margin-bottom: 1.5rem;
+}
+
+.project-info ul {
+    list-style: none;
+    margin: 1rem 0;
+    padding: 0;
+}
+
+.project-info ul li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: 1.1rem;
+    color: var(--black);
+}
+
+.project-info ul li:before {
+    content: "•";
+    color: var(--orange);
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+@media (max-width: 768px) {
+    .project-content {
+        grid-template-columns: 1fr;
+    }
+
+    .project-detail {
+        padding: 7rem 1rem 3rem;
+    }
+
+    .project-detail .container {
+        padding: 1.5rem;
+    }
+
+    .project-detail h1 {
+        font-size: 2rem;
+    }
+
+    .project-info h2 {
+        font-size: 1.3rem;
+    }
+
+    .project-info p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-detail {
+        padding: 6rem 1rem 2rem;
+    }
+
+    .project-detail .container {
+        padding: 1rem;
+    }
+
+    .project-detail h1 {
+        font-size: 1.8rem;
     }
 } 
