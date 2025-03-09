@@ -557,4 +557,280 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: bold;
     position: absolute;
     left: 0;
+}
+
+/* Media Queries */
+
+/* Móvil (320px - 480px) */
+@media screen and (max-width: 480px) {
+    /* Navegación */
+    .navbar {
+        height: 60px;
+        padding: 0.5rem 1rem;
+    }
+
+    .logo img {
+        height: 40px;
+    }
+
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background: var(--white);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    /* Hero Section */
+    .hero {
+        padding-top: 60px;
+    }
+
+    .hero-content {
+        padding: 0 1rem;
+    }
+
+    .hero-logo {
+        width: 120px;
+        padding: 1rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    /* Sección Conócenos */
+    .about {
+        padding: 3rem 1rem;
+    }
+
+    .about-content {
+        gap: 1.5rem;
+    }
+
+    .about-text {
+        padding: 1rem;
+    }
+
+    .about-text p {
+        font-size: 0.9rem;
+    }
+
+    .about-image-container {
+        height: 250px;
+    }
+
+    .about-features {
+        grid-template-columns: 1fr;
+    }
+
+    /* Sección Proyectos */
+    .projects {
+        padding: 3rem 1rem;
+    }
+
+    .project-gallery {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Sección Contacto */
+    .contact {
+        padding: 3rem 1rem;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 0.8rem;
+    }
+}
+
+/* Tablet (768px - 1024px) */
+@media screen and (min-width: 481px) and (max-width: 1024px) {
+    /* Navegación */
+    .navbar {
+        height: 70px;
+        padding: 1rem 2rem;
+    }
+
+    .logo img {
+        height: 50px;
+    }
+
+    .nav-links {
+        gap: 1.5rem;
+    }
+
+    .nav-links a {
+        font-size: 1rem;
+    }
+
+    /* Hero Section */
+    .hero-content {
+        padding: 0 2rem;
+    }
+
+    .hero-logo {
+        width: 150px;
+    }
+
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+
+    /* Sección Conócenos */
+    .about {
+        padding: 4rem 2rem;
+    }
+
+    .about-features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Sección Proyectos */
+    .projects {
+        padding: 4rem 2rem;
+    }
+
+    .project-gallery {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Sección Contacto */
+    .contact {
+        padding: 4rem 2rem;
+    }
+}
+
+/* Laptop / Escritorio Pequeño (1280px - 1440px) */
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+    .hero-content {
+        max-width: 1000px;
+    }
+
+    .about-content,
+    .project-gallery,
+    .contact-container {
+        max-width: 1200px;
+    }
+}
+
+/* Pantallas Grandes (1600px - 1920px) */
+@media screen and (min-width: 1441px) {
+    .hero-content {
+        max-width: 1200px;
+    }
+
+    .hero-content h1 {
+        font-size: 4rem;
+    }
+
+    .about-content,
+    .project-gallery,
+    .contact-container {
+        max-width: 1400px;
+    }
+
+    .project-gallery {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Ajustes para el menú móvil */
+@media screen and (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background: var(--white);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        z-index: 999;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    /* Estilo para el menú hamburguesa activo */
+    .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+}
+
+/* Ajustes para orientación horizontal en móviles */
+@media screen and (max-height: 600px) and (orientation: landscape) {
+    .hero {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .nav-links {
+        height: auto;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+}
+
+/* Ajustes para la página de detalle del proyecto */
+@media screen and (max-width: 768px) {
+    .project-detail {
+        padding: 4rem 1rem;
+    }
+
+    .project-content {
+        grid-template-columns: 1fr;
+    }
+
+    .project-detail h1 {
+        font-size: 2rem;
+    }
+
+    .project-detail .project-info h2 {
+        font-size: 1.3rem;
+    }
 } 
