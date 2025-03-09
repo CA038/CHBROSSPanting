@@ -307,9 +307,11 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     overflow: hidden;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     padding: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .project-card {
@@ -318,17 +320,60 @@ h1, h2, h3, h4, h5, h6 {
     overflow: hidden;
     aspect-ratio: 4/3;
     position: relative;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
 }
 
+.project-card.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    height: 90vh;
+    z-index: 1000;
+    background: var(--white);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.project-card.expanded img {
+    height: 70%;
+    object-fit: cover;
+}
+
+.project-card.expanded .project-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    padding: 2rem;
+    transform: none;
+    height: 30%;
+    overflow-y: auto;
+}
+
+.project-card.expanded .project-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--black);
+}
+
+.project-card.expanded .project-info p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--black);
+}
+
 .project-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: all 0.3s ease;
 }
 
 .project-info {
@@ -336,8 +381,7 @@ h1, h2, h3, h4, h5, h6 {
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.7);
-    color: var(--black);
+    background: rgba(255, 255, 255, 0.9);
     padding: 1rem;
     transform: translateY(100%);
     transition: transform 0.3s ease;
@@ -355,7 +399,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .project-info p {
     font-size: 0.9rem;
-    opacity: 0.9;
     color: var(--black);
 }
 
@@ -1332,4 +1375,15 @@ h1, h2, h3, h4, h5, h6 {
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
     color: #666666;
+}
+
+.project-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 999;
+    backdrop-filter: blur(5px);
 } 
