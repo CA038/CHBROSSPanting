@@ -8,10 +8,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetElement = document.querySelector(targetId);
             
             if (targetElement) {
+                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                
                 window.scrollTo({
-                    top: targetElement.offsetTop - 60,
+                    top: targetPosition,
                     behavior: 'smooth'
                 });
+
+                // Si estamos en móvil y el menú está abierto, lo cerramos
+                const menuToggle = document.querySelector('.menu-toggle');
+                const navLinks = document.querySelector('.nav-links');
+                const menuOverlay = document.querySelector('.menu-overlay');
+                const body = document.body;
+
+                if (menuToggle && menuToggle.classList.contains('active')) {
+                    menuToggle.classList.remove('active');
+                    navLinks.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    body.classList.remove('menu-open');
+                }
             }
         });
     });
