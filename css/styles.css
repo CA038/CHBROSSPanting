@@ -91,14 +91,14 @@ h1, h2, h3, h4, h5, h6 {
     background: rgba(255, 98, 13, 0.1);
 }
 
-/* Menú hamburguesa */
+/* Menú móvil */
 .menu-toggle {
     display: none;
     background: none;
     border: none;
     cursor: pointer;
     padding: 0.5rem;
-    z-index: 1000;
+    z-index: 1001;
 }
 
 .menu-toggle span {
@@ -760,6 +760,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Ajustes para el menú móvil */
 @media screen and (max-width: 768px) {
+    body.menu-open {
+        overflow: hidden;
+    }
+
     .menu-toggle {
         display: block;
     }
@@ -773,22 +777,37 @@ h1, h2, h3, h4, h5, h6 {
         height: calc(100vh - 60px);
         background: var(--white);
         flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
         padding: 2rem;
         gap: 1.5rem;
         z-index: 999;
+        transition: transform 0.3s ease;
+        transform: translateX(-100%);
+        overflow-y: auto;
     }
 
     .nav-links.active {
         display: flex;
+        transform: translateX(0);
     }
 
     .nav-links a {
         width: 100%;
         text-align: center;
         padding: 1rem;
+        font-size: 1.2rem;
+        border-radius: 8px;
+        background: rgba(255, 98, 13, 0.1);
     }
 
-    /* Estilo para el menú hamburguesa activo */
+    .nav-links a:hover,
+    .nav-links a.active {
+        background: var(--orange);
+        color: var(--white);
+    }
+
+    /* Animación del menú hamburguesa */
     .menu-toggle.active span:nth-child(1) {
         transform: rotate(45deg) translate(5px, 5px);
     }
@@ -799,6 +818,25 @@ h1, h2, h3, h4, h5, h6 {
 
     .menu-toggle.active span:nth-child(3) {
         transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    /* Fondo oscuro cuando el menú está abierto */
+    .menu-overlay {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 998;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    body.menu-open .menu-overlay {
+        display: block;
+        opacity: 1;
     }
 }
 
