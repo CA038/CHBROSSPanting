@@ -9,22 +9,38 @@ document.addEventListener('DOMContentLoaded', function() {
             // Añadir la clase expanded a la tarjeta clickeada
             this.classList.add('expanded');
             
+            // Crear y añadir el botón de cierre
+            const closeButton = document.createElement('button');
+            closeButton.className = 'close-button';
+            closeButton.innerHTML = '×';
+            closeButton.setAttribute('aria-label', 'Cerrar proyecto');
+            this.appendChild(closeButton);
+            
             // Añadir overlay oscuro
             const overlay = document.createElement('div');
             overlay.className = 'project-overlay';
             document.body.appendChild(overlay);
             
-            // Cerrar al hacer clic en el overlay
-            overlay.addEventListener('click', function() {
-                card.classList.remove('expanded');
+            // Función para cerrar la tarjeta
+            const closeCard = () => {
+                this.classList.remove('expanded');
                 overlay.remove();
+                closeButton.remove();
+            };
+            
+            // Cerrar al hacer clic en el botón
+            closeButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                closeCard();
             });
+            
+            // Cerrar al hacer clic en el overlay
+            overlay.addEventListener('click', closeCard);
             
             // Cerrar con la tecla Escape
             document.addEventListener('keydown', function closeOnEscape(e) {
                 if (e.key === 'Escape') {
-                    card.classList.remove('expanded');
-                    overlay.remove();
+                    closeCard();
                     document.removeEventListener('keydown', closeOnEscape);
                 }
             });
