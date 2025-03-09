@@ -429,7 +429,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .close-button:hover {
     background: #000000;
-    transform: scale(1.1);
+    transform: translateX(-50%) scale(1.1);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -1146,12 +1146,6 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Media Queries para móviles */
 @media (max-width: 768px) {
-    /* Ajustes generales */
-    .projects, .about, .contact {
-        padding: 3rem 5%;
-        padding-top: 5rem;
-    }
-
     /* Ajustes de la galería de proyectos */
     .project-gallery {
         grid-template-columns: 1fr;
@@ -1164,107 +1158,84 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .project-card.expanded {
-        transform: translate(-50%, -50%) scale(1);
-        width: 100vw;
-        height: 100vh;
-        border-radius: 0;
+        position: fixed;
         top: 0;
         left: 0;
+        width: 100vw;
+        height: 100vh;
+        transform: none;
+        border-radius: 0;
+        background: var(--white);
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
     }
 
     .project-card.expanded img {
-        height: 50%;
+        width: 100%;
+        height: 70%;
+        object-fit: cover;
         border-radius: 0;
     }
 
     .project-card.expanded .project-info {
-        height: 50%;
-        border-radius: 0;
+        position: relative;
+        height: 30%;
+        background: var(--white);
         padding: 1.5rem;
-        overflow-y: auto;
+        border-radius: 0;
+        transform: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
 
     .project-card.expanded .project-info h3 {
         font-size: 1.5rem;
         margin-bottom: 1rem;
+        color: var(--black);
+        text-align: center;
     }
 
     .project-card.expanded .project-info p {
         font-size: 1rem;
         line-height: 1.5;
+        color: var(--black);
+        text-align: center;
+        max-width: 90%;
+        margin: 0 auto;
     }
 
     /* Ajustes del botón de cierre */
     .close-button {
+        position: absolute;
         top: 15px;
-        right: 15px;
-        left: auto;
-        transform: none;
+        left: 50%;
+        transform: translateX(-50%);
         width: 40px;
         height: 40px;
-        font-size: 24px;
         background: var(--black);
         color: var(--white);
+        border: none;
+        border-radius: 50%;
+        font-size: 24px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         z-index: 1002;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
 
-    /* Ajustes de la sección Conócenos */
-    .about-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .about-text {
-        padding: 1.5rem;
-    }
-
-    .about-text p {
-        font-size: 1rem;
-        line-height: 1.6;
-    }
-
-    .about-image-container {
-        min-height: 300px;
-    }
-
-    .about-features {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    /* Ajustes de la sección Contacto */
-    .contact-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        padding: 1rem;
-        font-size: 1rem;
-    }
-
-    .submit-btn {
-        padding: 1rem;
-        font-size: 1rem;
-        width: 100%;
-    }
-
-    .info-item {
-        padding: 1rem;
-        background: var(--white);
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    .close-button:hover {
+        background: #000000;
+        transform: translateX(-50%) scale(1.1);
     }
 }
 
 @media (max-width: 480px) {
-    /* Ajustes para móviles pequeños */
-    .projects, .about, .contact {
-        padding: 2rem 5%;
-        padding-top: 4rem;
-    }
-
     .project-card.expanded .project-info {
         padding: 1rem;
     }
@@ -1279,58 +1250,20 @@ h1, h2, h3, h4, h5, h6 {
 
     .close-button {
         top: 10px;
-        right: 10px;
         width: 35px;
         height: 35px;
         font-size: 20px;
-    }
-
-    .about-text {
-        padding: 1rem;
-    }
-
-    .about-text p {
-        font-size: 0.9rem;
-    }
-
-    .about-image-container {
-        min-height: 250px;
-    }
-
-    .contact-form input,
-    .contact-form textarea {
-        padding: 0.8rem;
-        font-size: 0.9rem;
-    }
-
-    .submit-btn {
-        padding: 0.8rem;
-        font-size: 0.9rem;
-    }
-
-    .info-item {
-        padding: 0.8rem;
-        font-size: 0.9rem;
     }
 }
 
 /* Ajustes para orientación horizontal en móviles */
 @media (max-height: 600px) and (orientation: landscape) {
-    .project-card.expanded {
-        height: 100vh;
-    }
-
     .project-card.expanded img {
-        height: 40%;
-    }
-
-    .project-card.expanded .project-info {
         height: 60%;
     }
 
-    .close-button {
-        top: 10px;
-        right: 10px;
+    .project-card.expanded .project-info {
+        height: 40%;
     }
 }
 
