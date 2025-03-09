@@ -413,7 +413,7 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateX(-50%);
     width: 32px;
     height: 32px;
-    background: var(--orange);
+    background: var(--black);
     border: none;
     border-radius: 50%;
     color: var(--white);
@@ -428,7 +428,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .close-button:hover {
-    background: var(--yellow);
+    background: #000000;
     transform: scale(1.1);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }

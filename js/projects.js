@@ -9,12 +9,17 @@ document.addEventListener('DOMContentLoaded', function() {
             // Añadir la clase expanded a la tarjeta clickeada
             this.classList.add('expanded');
             
-            // Crear y añadir el botón de cierre
-            const closeButton = document.createElement('button');
-            closeButton.className = 'close-button';
-            closeButton.innerHTML = '×';
-            closeButton.setAttribute('aria-label', 'Cerrar proyecto');
-            this.appendChild(closeButton);
+            // Verificar si ya existe un botón de cierre
+            let closeButton = this.querySelector('.close-button');
+            
+            // Si no existe, crear uno nuevo
+            if (!closeButton) {
+                closeButton = document.createElement('button');
+                closeButton.className = 'close-button';
+                closeButton.innerHTML = '×';
+                closeButton.setAttribute('aria-label', 'Cerrar proyecto');
+                this.appendChild(closeButton);
+            }
             
             // Añadir overlay oscuro
             const overlay = document.createElement('div');
@@ -25,7 +30,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const closeCard = () => {
                 this.classList.remove('expanded');
                 overlay.remove();
-                closeButton.remove();
+                if (closeButton) {
+                    closeButton.remove();
+                }
             };
             
             // Cerrar al hacer clic en el botón
