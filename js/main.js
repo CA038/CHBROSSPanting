@@ -1,50 +1,121 @@
 // Navegación suave
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+document.addEventListener('DOMContentLoaded', () => {
+    // Navegación suave
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 60,
+                    behavior: 'smooth'
+                });
+            }
         });
     });
-});
 
-// Menú móvil
-const menuToggle = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-const body = document.body;
+    // Marcar enlace activo al hacer scroll
+    function setActiveLink() {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
 
-menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    navLinks.classList.toggle('active');
-    body.classList.toggle('menu-open');
-});
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionBottom = sectionTop + section.offsetHeight;
+            const scrollPosition = window.scrollY;
 
-// Cerrar menú al hacer clic en un enlace
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        menuToggle.classList.remove('active');
-        navLinks.classList.remove('active');
-        body.classList.remove('menu-open');
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                const currentId = section.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${currentId}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+        });
+    }
+
+    // Activar el enlace correspondiente al hacer scroll
+    window.addEventListener('scroll', setActiveLink);
+    setActiveLink();
+
+    // Menú móvil
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const menuOverlay = document.querySelector('.menu-overlay');
+    const body = document.body;
+
+    if (menuToggle && navLinks && menuOverlay) {
+        menuToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            body.classList.toggle('menu-open');
+        });
+
+        // Cerrar menú al hacer clic en el overlay
+        menuOverlay.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            body.classList.remove('menu-open');
+        });
+
+        // Cerrar menú al hacer clic en los enlaces
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.classList.remove('active');
+                navLinks.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                body.classList.remove('menu-open');
+            });
+        });
+    }
+
+    // Inicializar el slider de proyectos
+    const projectGallery = document.querySelector('.project-gallery');
+    if (projectGallery) {
+        initializeProjectSlider();
+    }
+
+    // Formulario de contacto
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
+            contactForm.reset();
+        });
+    }
+
+    // Animaciones de scroll
+    const observerOptions = {
+        threshold: 0.1
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.feature, .project-card, .contact-form, .contact-info').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'all 0.5s ease-out';
+        observer.observe(el);
     });
 });
 
-// Cerrar menú al hacer clic fuera
-document.addEventListener('click', (e) => {
-    if (!navLinks.contains(e.target) && !menuToggle.contains(e.target)) {
-        menuToggle.classList.remove('active');
-        navLinks.classList.remove('active');
-        body.classList.remove('menu-open');
-    }
-});
-
-// Carrusel de proyectos
-const projects = [
-    // Aquí se agregarán los proyectos
-    // Formato: { image: 'ruta/imagen.jpg', title: 'Título del proyecto', description: 'Descripción' }
-];
-
-const projectSlider = document.querySelector('.project-gallery');
-
+// Función para crear tarjetas de proyectos
 function createProjectCard(project) {
     return `
         <div class="project-card">
@@ -57,11 +128,14 @@ function createProjectCard(project) {
     `;
 }
 
+// Inicializar el slider de proyectos
 function initializeProjectSlider() {
-    if (projects.length > 0) {
+    const projectSlider = document.querySelector('.project-gallery');
+    if (!projectSlider) return;
+
+    if (projects && projects.length > 0) {
         projectSlider.innerHTML = projects.map(createProjectCard).join('');
     } else {
-        // Crear 6 tarjetas de ejemplo con fondo gris
         const exampleCards = Array(6).fill().map((_, index) => `
             <div class="project-card">
                 <div class="project-info">
@@ -72,104 +146,4 @@ function initializeProjectSlider() {
         `).join('');
         projectSlider.innerHTML = exampleCards;
     }
-}
-
-// Formulario de contacto
-const contactForm = document.querySelector('.contact-form');
-
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Aquí se agregará la lógica para enviar el formulario
-    alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
-    contactForm.reset();
-});
-
-// Animación de scroll
-const observerOptions = {
-    threshold: 0.1
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.feature, .project-card, .contact-form, .contact-info').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'all 0.5s ease-out';
-    observer.observe(el);
-});
-
-// Función para manejar el menú activo según la sección visible
-function handleActiveMenu() {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('.nav-links a');
-    
-    // Función para verificar si una sección está visible
-    const isSectionVisible = (section) => {
-        const rect = section.getBoundingClientRect();
-        return (
-            rect.top <= window.innerHeight * 0.5 &&
-            rect.bottom >= window.innerHeight * 0.5
-        );
-    };
-
-    // Función para actualizar el menú activo
-    const updateActiveMenu = () => {
-        let currentSection = '';
-        
-        sections.forEach(section => {
-            if (isSectionVisible(section)) {
-                currentSection = section.id;
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSection}`) {
-                link.classList.add('active');
-            }
-        });
-    };
-
-    // Actualizar el menú activo al hacer scroll
-    window.addEventListener('scroll', updateActiveMenu);
-    // Actualizar el menú activo al cargar la página
-    window.addEventListener('load', updateActiveMenu);
-}
-
-// Función para manejar el menú móvil
-function handleMobileMenu() {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-    
-    menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('active');
-        navLinks.classList.toggle('active');
-        body.classList.toggle('menu-open');
-    });
-}
-
-// Función para manejar la galería de proyectos
-function handleProjectGallery() {
-    const projectGallery = document.querySelector('.project-gallery');
-    
-    if (projectGallery) {
-        // Aquí puedes agregar la lógica para la galería de proyectos
-        // Por ejemplo, cargar imágenes dinámicamente
-    }
-}
-
-// Inicializar todas las funciones cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', () => {
-    handleActiveMenu();
-    handleMobileMenu();
-    handleProjectGallery();
-    initializeProjectSlider();
-}); 
+} 
