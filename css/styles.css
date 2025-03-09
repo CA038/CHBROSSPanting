@@ -1169,18 +1169,19 @@ h1, h2, h3, h4, h5, h6 {
         z-index: 1000;
         display: flex;
         flex-direction: column;
+        overflow: hidden;
     }
 
     .project-card.expanded img {
         width: 100%;
-        height: 70%;
+        height: 60%;
         object-fit: cover;
         border-radius: 0;
     }
 
     .project-card.expanded .project-info {
         position: relative;
-        height: 30%;
+        height: 40%;
         background: var(--white);
         padding: 1.5rem;
         border-radius: 0;
@@ -1190,17 +1191,18 @@ h1, h2, h3, h4, h5, h6 {
         justify-content: center;
         align-items: center;
         text-align: center;
+        overflow-y: auto;
     }
 
     .project-card.expanded .project-info h3 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         margin-bottom: 1rem;
         color: var(--black);
         text-align: center;
     }
 
     .project-card.expanded .project-info p {
-        font-size: 1rem;
+        font-size: 1.2rem;
         line-height: 1.5;
         color: var(--black);
         text-align: center;
@@ -1210,7 +1212,7 @@ h1, h2, h3, h4, h5, h6 {
 
     /* Ajustes del botón de cierre */
     .close-button {
-        position: absolute;
+        position: fixed;
         top: 15px;
         left: 50%;
         transform: translateX(-50%);
@@ -1241,11 +1243,11 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .project-card.expanded .project-info h3 {
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     }
 
     .project-card.expanded .project-info p {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .close-button {
@@ -1259,11 +1261,11 @@ h1, h2, h3, h4, h5, h6 {
 /* Ajustes para orientación horizontal en móviles */
 @media (max-height: 600px) and (orientation: landscape) {
     .project-card.expanded img {
-        height: 60%;
+        height: 50%;
     }
 
     .project-card.expanded .project-info {
-        height: 40%;
+        height: 50%;
     }
 }
 
