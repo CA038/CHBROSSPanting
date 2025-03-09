@@ -367,6 +367,7 @@ h1, h2, h3, h4, h5, h6 {
 .contact h2 {
     text-align: center;
     margin-bottom: 3rem;
+    color: var(--black);
 }
 
 .contact-container {
@@ -420,6 +421,7 @@ h1, h2, h3, h4, h5, h6 {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    color: var(--black);
 }
 
 .info-item {
@@ -432,6 +434,10 @@ h1, h2, h3, h4, h5, h6 {
 .info-item i {
     font-size: 1.5rem;
     color: var(--orange);
+}
+
+.info-item p {
+    color: var(--black);
 }
 
 /* Footer */
