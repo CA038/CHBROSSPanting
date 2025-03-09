@@ -409,7 +409,8 @@ h1, h2, h3, h4, h5, h6 {
 .close-button {
     position: absolute;
     top: 15px;
-    right: 15px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 32px;
     height: 32px;
     background: var(--orange);
@@ -580,7 +581,6 @@ h1, h2, h3, h4, h5, h6 {
 
     .close-button {
         top: 8px;
-        right: 8px;
         width: 24px;
         height: 24px;
         font-size: 16px;
@@ -806,7 +806,6 @@ h1, h2, h3, h4, h5, h6 {
 
     .close-button {
         top: 10px;
-        right: 10px;
         width: 28px;
         height: 28px;
         font-size: 18px;
@@ -1359,7 +1358,6 @@ h1, h2, h3, h4, h5, h6 {
 
     .close-button {
         top: 8px;
-        right: 8px;
         width: 24px;
         height: 24px;
         font-size: 16px;
