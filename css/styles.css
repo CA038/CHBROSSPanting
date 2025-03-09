@@ -1146,137 +1146,191 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Media Queries para móviles */
 @media (max-width: 768px) {
+    /* Ajustes generales */
+    .projects, .about, .contact {
+        padding: 3rem 5%;
+        padding-top: 5rem;
+    }
+
+    /* Ajustes de la galería de proyectos */
     .project-gallery {
         grid-template-columns: 1fr;
-        gap: 1rem;
+        gap: 1.5rem;
+        padding: 0;
     }
-    
+
+    .project-card {
+        aspect-ratio: 16/9;
+    }
+
     .project-card.expanded {
         transform: translate(-50%, -50%) scale(1);
-        width: 95vw;
-        height: 90vh;
-        top: 50%;
-        left: 50%;
-    }
-
-    .project-card.expanded .project-info h3 {
-        font-size: 1.8rem;
-    }
-
-    .project-card.expanded .project-info p {
-        font-size: 1.2rem;
-    }
-
-    .close-button {
-        top: 10px;
-        width: 32px;
-        height: 32px;
-        font-size: 20px;
-        background: var(--black);
-        color: var(--white);
-        z-index: 1002;
-    }
-}
-
-@media (max-width: 480px) {
-    .project-card.expanded {
         width: 100vw;
         height: 100vh;
         border-radius: 0;
+        top: 0;
+        left: 0;
     }
 
     .project-card.expanded img {
-        height: 60%;
+        height: 50%;
         border-radius: 0;
     }
 
     .project-card.expanded .project-info {
-        height: 40%;
+        height: 50%;
         border-radius: 0;
         padding: 1.5rem;
+        overflow-y: auto;
     }
 
     .project-card.expanded .project-info h3 {
         font-size: 1.5rem;
+        margin-bottom: 1rem;
     }
 
     .project-card.expanded .project-info p {
         font-size: 1rem;
+        line-height: 1.5;
     }
 
+    /* Ajustes del botón de cierre */
     .close-button {
         top: 15px;
-        width: 36px;
-        height: 36px;
+        right: 15px;
+        left: auto;
+        transform: none;
+        width: 40px;
+        height: 40px;
         font-size: 24px;
+        background: var(--black);
+        color: var(--white);
+        z-index: 1002;
+    }
+
+    /* Ajustes de la sección Conócenos */
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .about-text {
+        padding: 1.5rem;
+    }
+
+    .about-text p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .about-image-container {
+        min-height: 300px;
+    }
+
+    .about-features {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Ajustes de la sección Contacto */
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    .submit-btn {
+        padding: 1rem;
+        font-size: 1rem;
+        width: 100%;
+    }
+
+    .info-item {
+        padding: 1rem;
+        background: var(--white);
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 }
 
-/* Ajustes para orientación horizontal en móviles */
-@media (max-height: 600px) and (orientation: landscape) {
-    .hero {
-        min-height: 100vh;
-        padding: 80px 1rem 1rem;
+@media (max-width: 480px) {
+    /* Ajustes para móviles pequeños */
+    .projects, .about, .contact {
+        padding: 2rem 5%;
+        padding-top: 4rem;
     }
 
-    .hero-content h1 {
-        font-size: 1.8rem;
-    }
-
-    .hero-logo {
-        width: 100px;
-        margin-bottom: 1rem;
-    }
-
-    .about-content {
+    .project-card.expanded .project-info {
         padding: 1rem;
+    }
+
+    .project-card.expanded .project-info h3 {
+        font-size: 1.3rem;
+    }
+
+    .project-card.expanded .project-info p {
+        font-size: 0.9rem;
+    }
+
+    .close-button {
+        top: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+        font-size: 20px;
+    }
+
+    .about-text {
+        padding: 1rem;
+    }
+
+    .about-text p {
+        font-size: 0.9rem;
     }
 
     .about-image-container {
         min-height: 250px;
     }
 
-    .nav-links {
-        padding: 60px 1rem 1rem;
-    }
-}
-
-/* Ajustes para dispositivos táctiles */
-@media (hover: none) {
-    .nav-links a:hover,
-    .nav-links a.active {
-        background: none;
-    }
-
-    .cta-button:hover,
-    .submit-btn:hover {
-        transform: none;
-    }
-
-    .service-card:hover {
-        transform: none;
-    }
-}
-
-/* Ajustes para modo oscuro en móviles */
-@media (prefers-color-scheme: dark) {
-    .navbar {
-        background: var(--white);
-    }
-
-    .nav-links {
-        background: var(--white);
-    }
-
     .contact-form input,
     .contact-form textarea {
-        background: #2d2d2d;
-        color: #ffffff;
+        padding: 0.8rem;
+        font-size: 0.9rem;
     }
 
-    .contact-form input::placeholder,
-    .contact-form textarea::placeholder {
-        color: #cccccc;
+    .submit-btn {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .info-item {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Ajustes para orientación horizontal en móviles */
+@media (max-height: 600px) and (orientation: landscape) {
+    .project-card.expanded {
+        height: 100vh;
+    }
+
+    .project-card.expanded img {
+        height: 40%;
+    }
+
+    .project-card.expanded .project-info {
+        height: 60%;
+    }
+
+    .close-button {
+        top: 10px;
+        right: 10px;
     }
 }
 
