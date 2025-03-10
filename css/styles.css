@@ -985,15 +985,80 @@ h1, h2, h3, h4, h5, h6 {
     transform: scale(1.2);
 }
 
-/* Ajustes responsive para el carrusel */
-@media screen and (max-width: 768px) {
+/* Pantallas grandes (1441px en adelante) */
+@media screen and (min-width: 1441px) {
+    .carousel-container {
+        max-width: 1400px;
+    }
+
+    .carousel-track-container {
+        height: 800px;
+    }
+
+    .carousel-button {
+        width: 60px;
+        height: 60px;
+    }
+
+    .carousel-indicator {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* Laptop / Escritorio Pequeño (1025px - 1440px) */
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+    .carousel-track-container {
+        height: 600px;
+    }
+}
+
+/* Tablet (768px - 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .carousel-container {
+        padding: 0 15px;
+    }
+
+    .carousel-track-container {
+        height: 500px;
+    }
+
+    .carousel-button {
+        width: 45px;
+        height: 45px;
+    }
+
+    .carousel-button.prev {
+        left: 15px;
+    }
+
+    .carousel-button.next {
+        right: 15px;
+    }
+}
+
+/* Tablet pequeña (481px - 767px) */
+@media screen and (min-width: 481px) and (max-width: 767px) {
+    .carousel-container {
+        padding: 0 10px;
+    }
+
     .carousel-track-container {
         height: 400px;
+        border-radius: 10px;
     }
 
     .carousel-button {
         width: 40px;
         height: 40px;
+    }
+
+    .carousel-button.prev {
+        left: 10px;
+    }
+
+    .carousel-button.next {
+        right: 10px;
     }
 
     .carousel-indicator {
@@ -1002,13 +1067,59 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* Móvil (320px - 480px) */
 @media screen and (max-width: 480px) {
+    .carousel-container {
+        padding: 0 5px;
+    }
+
     .carousel-track-container {
         height: 300px;
+        border-radius: 8px;
     }
 
     .carousel-button {
         width: 35px;
         height: 35px;
+        font-size: 0.8rem;
+    }
+
+    .carousel-button.prev {
+        left: 5px;
+    }
+
+    .carousel-button.next {
+        right: 5px;
+    }
+
+    .carousel-nav {
+        bottom: 10px;
+        gap: 8px;
+    }
+
+    .carousel-indicator {
+        width: 8px;
+        height: 8px;
+    }
+}
+
+/* Ajustes para orientación horizontal en móviles */
+@media screen and (max-height: 450px) and (orientation: landscape) {
+    .carousel-track-container {
+        height: 250px;
+    }
+
+    .carousel-button {
+        width: 30px;
+        height: 30px;
+    }
+
+    .carousel-nav {
+        bottom: 5px;
+    }
+
+    .carousel-indicator {
+        width: 6px;
+        height: 6px;
     }
 } 
