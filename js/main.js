@@ -93,11 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Inicializar el slider de proyectos
-    const projectGallery = document.querySelector('.project-gallery');
-    if (projectGallery) {
-        initializeProjectSlider();
-    }
+    // Inicializar el carrusel
+    initializeCarousel();
 
     // Formulario de contacto
     const contactForm = document.querySelector('.contact-form');
@@ -131,35 +128,96 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Función para crear tarjetas de proyectos
-function createProjectCard(project) {
-    return `
-        <div class="project-card">
-            <img src="${project.image}" alt="${project.title}">
-            <div class="project-info">
-                <h3>${project.title}</h3>
-                <p>${project.description}</p>
-            </div>
-        </div>
-    `;
-}
+// Carrusel de proyectos
+function initializeCarousel() {
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const nextButton = document.querySelector('.carousel-button.next');
+    const prevButton = document.querySelector('.carousel-button.prev');
+    const dotsNav = document.querySelector('.carousel-nav');
+    const dots = Array.from(dotsNav.children);
 
-// Inicializar el slider de proyectos
-function initializeProjectSlider() {
-    const projectSlider = document.querySelector('.project-gallery');
-    if (!projectSlider) return;
+    let currentSlide = 0;
+    
+    // Mostrar el primer slide
+    slides[0].classList.add('active');
 
-    if (projects && projects.length > 0) {
-        projectSlider.innerHTML = projects.map(createProjectCard).join('');
-    } else {
-        const exampleCards = Array(6).fill().map((_, index) => `
-            <div class="project-card">
-                <div class="project-info">
-                    <h3>Proyecto ${index + 1}</h3>
-                    <p>Descripción del proyecto</p>
-                </div>
-            </div>
-        `).join('');
-        projectSlider.innerHTML = exampleCards;
+    // Función para actualizar slides
+    function updateSlides() {
+        // Remover clase active de todos los slides
+        slides.forEach(slide => slide.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+        
+        // Agregar clase active al slide actual
+        slides[currentSlide].classList.add('active');
+        dots[currentSlide].classList.add('active');
+    }
+
+    // Event listener para el botón siguiente
+    nextButton.addEventListener('click', () => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        updateSlides();
+    });
+
+    // Event listener para el botón anterior
+    prevButton.addEventListener('click', () => {
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        updateSlides();
+    });
+
+    // Event listeners para los indicadores
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            currentSlide = index;
+            updateSlides();
+        });
+    });
+
+    // Auto avance cada 5 segundos
+    let autoAdvance = setInterval(() => {
+        currentSlide = (currentSlide + 1) % slides.length;
+        updateSlides();
+    }, 5000);
+
+    // Pausar auto avance cuando el mouse está sobre el carrusel
+    const carouselContainer = document.querySelector('.carousel-container');
+    carouselContainer.addEventListener('mouseenter', () => {
+        clearInterval(autoAdvance);
+    });
+
+    carouselContainer.addEventListener('mouseleave', () => {
+        autoAdvance = setInterval(() => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlides();
+        }, 5000);
+    });
+
+    // Swipe para móviles
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    carouselContainer.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+    });
+
+    carouselContainer.addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    });
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                // Swipe izquierda
+                currentSlide = (currentSlide + 1) % slides.length;
+            } else {
+                // Swipe derecha
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            }
+            updateSlides();
+        }
     }
 } 
