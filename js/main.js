@@ -244,7 +244,7 @@ function handleSubmit(event) {
     };
 
     // Enviar el correo usando EmailJS
-    emailjs.send('service_8finuss', 'template_bddzt9i', templateParams)
+    emailjs.send('service_9u8t576', 'template_bddzt9i', templateParams)
         .then(function(response) {
             console.log('¡ÉXITO!', response.status, response.text);
             alert('¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.');
