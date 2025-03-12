@@ -191,11 +191,11 @@
     <section id="contacto" class="contact">
         <h2>Contáctanos</h2>
         <div class="contact-container">
-            <form class="contact-form" id="contactForm" onsubmit="return handleSubmit(event)">
-                <input type="text" name="nombre" placeholder="Nombre" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="tel" name="telefono" placeholder="Teléfono" required>
-                <textarea name="mensaje" placeholder="Mensaje" required></textarea>
+            <form id="contactForm" class="contact-form">
+                <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="tel" id="telefono" name="telefono" placeholder="Teléfono" required>
+                <textarea id="mensaje" name="mensaje" placeholder="Mensaje" required></textarea>
                 <button type="submit" class="submit-btn">Enviar Mensaje</button>
             </form>
             <div class="contact-info">
