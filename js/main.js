@@ -99,11 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Formulario de contacto
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.');
-            contactForm.reset();
-        });
+        contactForm.addEventListener('submit', handleSubmit);
     }
 
     // Animaciones de scroll
@@ -220,4 +216,49 @@ function initializeCarousel() {
             updateSlides();
         }
     }
+}
+
+// Configuración de EmailJS
+(function() {
+    emailjs.init("TU_USER_ID"); // Aquí necesitarás tu User ID de EmailJS
+})();
+
+// Función para manejar el envío del formulario
+function handleSubmit(event) {
+    event.preventDefault();
+    
+    const form = document.getElementById('contactForm');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.textContent;
+    
+    // Cambiar el texto del botón mientras se envía
+    submitButton.textContent = 'Enviando...';
+    submitButton.disabled = true;
+
+    // Preparar los datos del formulario
+    const templateParams = {
+        to_email: 'paintingchbross@gmail.com',
+        from_name: form.nombre.value,
+        from_email: form.email.value,
+        phone: form.telefono.value,
+        message: form.mensaje.value
+    };
+
+    // Enviar el correo usando EmailJS
+    emailjs.send('default_service', 'template_id', templateParams)
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            alert('¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.');
+            form.reset();
+        }, function(error) {
+            console.log('FAILED...', error);
+            alert('Lo sentimos, hubo un error al enviar el mensaje. Por favor, intenta nuevamente.');
+        })
+        .finally(function() {
+            // Restaurar el botón
+            submitButton.textContent = originalButtonText;
+            submitButton.disabled = false;
+        });
+
+    return false;
 } 
