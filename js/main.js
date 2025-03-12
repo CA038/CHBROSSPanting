@@ -231,16 +231,22 @@ function handleSubmit(event) {
     const submitButton = form.querySelector('button[type="submit"]');
     const originalButtonText = submitButton.textContent;
     
+    // Obtener los valores del formulario
+    const nombre = document.getElementById('nombre').value;
+    const email = document.getElementById('email').value;
+    const telefono = document.getElementById('telefono').value;
+    const mensaje = document.getElementById('mensaje').value;
+
     // Cambiar el texto del botón mientras se envía
     submitButton.textContent = 'Enviando...';
     submitButton.disabled = true;
 
-    // Preparar los datos del formulario
+    // Preparar los datos del formulario para EmailJS
     const templateParams = {
-        from_name: document.getElementById('nombre').value,
-        reply_to: document.getElementById('email').value,
-        telefono: document.getElementById('telefono').value,
-        message: document.getElementById('mensaje').value
+        from_name: nombre,
+        reply_to: email,
+        telefono: telefono,
+        message: mensaje
     };
 
     // Enviar el correo usando EmailJS
@@ -248,6 +254,15 @@ function handleSubmit(event) {
         .then(function(response) {
             console.log('¡ÉXITO!', response.status, response.text);
             alert('¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.');
+            
+            // Preparar mensaje para WhatsApp
+            const whatsappMessage = `*Nuevo Mensaje de Contacto*%0A%0A*Nombre:* ${nombre}%0A*Email:* ${email}%0A*Teléfono:* ${telefono}%0A*Mensaje:* ${mensaje}`;
+            const whatsappUrl = `https://wa.me/18644098256?text=${whatsappMessage}`;
+            
+            // Abrir WhatsApp en una nueva pestaña
+            window.open(whatsappUrl, '_blank');
+            
+            // Limpiar el formulario
             form.reset();
         })
         .catch(function(error) {
