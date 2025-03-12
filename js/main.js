@@ -237,14 +237,14 @@ function handleSubmit(event) {
 
     // Preparar los datos del formulario
     const templateParams = {
-        name: document.getElementById('nombre').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('telefono').value,
+        from_name: document.getElementById('nombre').value,
+        reply_to: document.getElementById('email').value,
+        telefono: document.getElementById('telefono').value,
         message: document.getElementById('mensaje').value
     };
 
     // Enviar el correo usando EmailJS
-    emailjs.sendForm('service_8finuss', 'template_bddzt9i', form)
+    emailjs.send('service_8finuss', 'template_bddzt9i', templateParams)
         .then(function(response) {
             console.log('¡ÉXITO!', response.status, response.text);
             alert('¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.');
