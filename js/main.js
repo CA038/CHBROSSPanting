@@ -220,7 +220,7 @@ function initializeCarousel() {
 
 // Configuración de EmailJS
 (function() {
-    emailjs.init("TU_USER_ID"); // Aquí necesitarás tu User ID de EmailJS
+    emailjs.init("dq8MsHqy30hfGETP_");
 })();
 
 // Función para manejar el envío del formulario
@@ -245,13 +245,13 @@ function handleSubmit(event) {
     };
 
     // Enviar el correo usando EmailJS
-    emailjs.send('default_service', 'template_id', templateParams)
+    emailjs.send('service_8finuss', 'template_bddzt9i', templateParams)
         .then(function(response) {
-            console.log('SUCCESS!', response.status, response.text);
+            console.log('¡ÉXITO!', response.status, response.text);
             alert('¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.');
             form.reset();
         }, function(error) {
-            console.log('FAILED...', error);
+            console.log('ERROR...', error);
             alert('Lo sentimos, hubo un error al enviar el mensaje. Por favor, intenta nuevamente.');
         })
         .finally(function() {
