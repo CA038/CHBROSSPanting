@@ -237,7 +237,6 @@ function handleSubmit(event) {
 
     // Preparar los datos del formulario
     const templateParams = {
-        to_email: 'paintingchbross@gmail.com',
         from_name: form.nombre.value,
         from_email: form.email.value,
         phone: form.telefono.value,
@@ -250,8 +249,9 @@ function handleSubmit(event) {
             console.log('¡ÉXITO!', response.status, response.text);
             alert('¡Mensaje enviado con éxito! Nos pondremos en contacto contigo pronto.');
             form.reset();
-        }, function(error) {
-            console.log('ERROR...', error);
+        })
+        .catch(function(error) {
+            console.error('ERROR...', error);
             alert('Lo sentimos, hubo un error al enviar el mensaje. Por favor, intenta nuevamente.');
         })
         .finally(function() {
