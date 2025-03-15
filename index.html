@@ -10,17 +10,37 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
+    <!-- Eliminar este bloque completo -->
+    <!-- <div class="language-switcher" id="languageSwitcher">
+        <div class="language-selector">
+            <h3>Select Language / Seleccionar Idioma</h3>
+            <div class="language-buttons">
+                <button onclick="changeLanguage('es')" class="lang-btn">Español</button>
+                <button onclick="changeLanguage('en')" class="lang-btn">English</button>
+            </div>
+        </div>
+    </div> -->
+
+    <!-- El resto del HTML permanece igual -->
     <!-- Navegación -->
     <nav class="navbar">
         <div class="logo">
             <img src="Logos/logo HC BROSS.png" alt="CH BROSS Painting Logo">
         </div>
         <div class="nav-links">
-            <a href="#hero" class="nav-link">Inicio</a>
-            <a href="#conocenos" class="nav-link">Conócenos</a>
-            <a href="#servicios" class="nav-link">Servicios</a>
-            <a href="#proyectos" class="nav-link">Proyectos</a>
-            <a href="#contacto" class="nav-link">Contáctanos</a>
+            <a href="#hero" class="nav-link" data-translate="nav_home">Inicio</a>
+            <a href="#conocenos" class="nav-link" data-translate="nav_about">Conócenos</a>
+            <a href="#servicios" class="nav-link" data-translate="nav_services">Servicios</a>
+            <a href="#proyectos" class="nav-link" data-translate="nav_projects">Proyectos</a>
+            <a href="#contacto" class="nav-link" data-translate="nav_contact">Contáctanos</a>
+            <div class="language-selector">
+                <span class="language-text" data-translate="select_language">Seleccione su idioma</span>
+                <div class="language-links">
+                    <a href="#" onclick="changeLanguage('es')" class="lang-link">ESP</a>
+                    <span class="lang-separator">/</span>
+                    <a href="#" onclick="changeLanguage('en')" class="lang-link">ENG</a>
+                </div>
+            </div>
         </div>
         <button class="menu-toggle" aria-label="Menú">
             <span></span>
@@ -44,145 +64,196 @@
     <section id="conocenos" class="about">
         <h2>Conócenos</h2>
         <div class="about-content">
-            <div class="about-text">
-                <p>CH BROSS Painting es tu mejor opción en servicios de pintura profesional. Con más de 10 años de experiencia en el mercado, nos hemos destacado por brindar soluciones integrales de pintura para hogares y negocios.</p>
-                <p>Nuestro equipo de profesionales altamente capacitados utiliza materiales de primera calidad y técnicas modernas para garantizar resultados excepcionales en cada proyecto. Nos especializamos en:</p>
-                <ul>
-                    <li>Pintura de interiores y exteriores</li>
-                    <li>Acabados especiales y texturas</li>
-                    <li>Pintura de fachadas</li>
-                    <li>Restauración y mantenimiento</li>
-                    <li>Asesoría en color y diseño</li>
-                </ul>
-                <p>En CH BROSS Painting, nos comprometemos con la excelencia y la satisfacción del cliente. Cada proyecto es único y lo tratamos con la misma dedicación y profesionalismo.</p>
+            <div class="about-text-container">
+                <div class="about-text">
+                    <p>CH BROSS Painting es tu mejor opción en servicios de pintura 
+                        profesional. Con más de 10 años de experiencia en el mercado, 
+                        nos hemos destacado por brindar soluciones integrales de 
+                        pintura para hogares y negocios. Nuestro equipo de profesionales 
+                        altamente capacitados utiliza materiales de primera calidad y 
+                        técnicas modernas para garantizar resultados excepcionales en 
+                        cada proyecto.</p>
+                </div>
+                <div class="about-features">
+                    <div class="feature">
+                        <i class="fas fa-paint-roller"></i>
+                        <h3>Experiencia</h3>
+                        <p>Años de experiencia en el mercado</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-star"></i>
+                        <h3>Calidad</h3>
+                        <p>Materiales de primera calidad</p>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-clock"></i>
+                        <h3>Puntualidad</h3>
+                        <p>Entregas a tiempo</p>
+                    </div>
+                </div>
             </div>
             <div class="about-image-container">
                 <img src="Imagenes/Proyectos/conocenos.png" alt="Equipo CH BROSS Painting en acción" loading="lazy">
-            </div>
-            <div class="about-features">
-                <div class="feature">
-                    <i class="fas fa-paint-roller"></i>
-                    <h3>Experiencia</h3>
-                    <p>Años de experiencia en el mercado</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-star"></i>
-                    <h3>Calidad</h3>
-                    <p>Materiales de primera calidad</p>
-                </div>
-                <div class="feature">
-                    <i class="fas fa-clock"></i>
-                    <h3>Puntualidad</h3>
-                    <p>Entregas a tiempo</p>
-                </div>
             </div>
         </div>
     </section>
 
     <!-- Sección Servicios -->
     <section id="servicios" class="services">
-        <h2>House Painting Services</h2>
+        <h2 data-translate="services_title">House Painting Services</h2>
         <div class="services-container">
+            <!-- Servicio 1 -->
             <div class="service-card">
                 <div class="service-icon">
                     <i class="fas fa-home"></i>
                 </div>
-                <h3>Interior</h3>
+                <h3 data-translate="service_1_title">Interior</h3>
                 <ul class="service-features">
-                    <li>Paredes y techos</li>
-                    <li>Acabados profesionales</li>
-                    <li>Preparación de superficies</li>
-                    <li>Colores personalizados</li>
+                    <li data-translate="service_1_item1">Paredes y techos</li>
+                    <li data-translate="service_1_item2">Acabados profesionales</li>
+                    <li data-translate="service_1_item3">Preparación de superficies</li>
+                    <li data-translate="service_1_item4">Colores personalizados</li>
                 </ul>
-                <a href="#contacto" class="service-cta">Solicitar Servicio</a>
+                <a href="#contacto" class="service-cta" data-translate="service_cta">Solicitar Servicio</a>
             </div>
 
+            <!-- Servicio 2 -->
             <div class="service-card">
                 <div class="service-icon">
                     <i class="fas fa-paint-roller"></i>
                 </div>
-                <h3>Exterior</h3>
+                <h3 data-translate="service_2_title">Exterior</h3>
                 <ul class="service-features">
-                    <li>Fachadas completas</li>
-                    <li>Protección climática</li>
-                    <li>Sellado profesional</li>
-                    <li>Durabilidad garantizada</li>
+                    <li data-translate="service_2_item1">Fachadas completas</li>
+                    <li data-translate="service_2_item2">Protección climática</li>
+                    <li data-translate="service_2_item3">Sellado profesional</li>
+                    <li data-translate="service_2_item4">Durabilidad garantizada</li>
                 </ul>
-                <a href="#contacto" class="service-cta">Solicitar Servicio</a>
+                <a href="#contacto" class="service-cta" data-translate="service_cta">Solicitar Servicio</a>
             </div>
 
+            <!-- Servicio 3 -->
             <div class="service-card">
                 <div class="service-icon">
                     <i class="fas fa-th-large"></i>
                 </div>
-                <h3>Estructuras</h3>
+                <h3 data-translate="service_3_title">Estructuras</h3>
                 <ul class="service-features">
-                    <li>Cercas (Fences)</li>
-                    <li>Porches</li>
-                    <li>Gabinetes (Cabinets)</li>
-                    <li>Drywall</li>
+                    <li data-translate="service_3_item1">Cercas (Fences)</li>
+                    <li data-translate="service_3_item2">Porches</li>
+                    <li data-translate="service_3_item3">Gabinetes (Cabinets)</li>
+                    <li data-translate="service_3_item4">Drywall</li>
                 </ul>
-                <a href="#contacto" class="service-cta">Solicitar Servicio</a>
+                <a href="#contacto" class="service-cta" data-translate="service_cta">Solicitar Servicio</a>
             </div>
 
+            <!-- Servicio 4 -->
             <div class="service-card">
                 <div class="service-icon">
                     <i class="fas fa-plus-circle"></i>
                 </div>
-                <h3>Servicios Adicionales</h3>
+                <h3 data-translate="service_4_title">Servicios Adicionales</h3>
                 <ul class="service-features">
-                    <li>Pressure washing</li>
-                    <li>Reparaciones menores</li>
-                    <li>Consultoría de color</li>
-                    <li>¡Y más!</li>
+                    <li data-translate="service_4_item1">Pressure washing</li>
+                    <li data-translate="service_4_item2">Reparaciones menores</li>
+                    <li data-translate="service_4_item3">Consultoría de color</li>
+                    <li data-translate="service_4_item4">¡Y más!</li>
                 </ul>
-                <a href="#contacto" class="service-cta">Solicitar Servicio</a>
+                <a href="#contacto" class="service-cta" data-translate="service_cta">Solicitar Servicio</a>
             </div>
         </div>
     </section>
 
     <!-- Sección Proyectos -->
     <section id="proyectos" class="projects">
-        <h2>Nuestros Proyectos</h2>
-        <div class="carousel-container">
-            <button class="carousel-button prev" aria-label="Anterior">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            
-            <div class="carousel-track-container">
-                <div class="carousel-track">
-                    <div class="carousel-slide">
-                        <img src="Imagenes/Proyectos/1A.png" alt="Proyecto 1A - Pintura Interior" loading="lazy">
+        <h2 data-translate="projects_title">Nuestros Proyectos</h2>
+        <div class="modern-carousel">
+            <div class="carousel-container">
+                <div class="carousel-slides">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide active">
+                        <div class="slide-content">
+                            <img src="Imagenes/Carrucel/1A.png" alt="Proyecto Interior">
+                            <div class="slide-info">
+                                <h3 class="slide-title" data-translate="slide_title_1">PROYECTO INTERIOR</h3>
+                                <p class="slide-desc" data-translate="slide_desc_1">Transformación completa</p>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Slide 2 -->
                     <div class="carousel-slide">
-                        <img src="Imagenes/Proyectos/1B.png" alt="Proyecto 1B - Pintura Interior" loading="lazy">
+                        <div class="slide-content">
+                            <img src="Imagenes/Carrucel/1B.png" alt="Acabados Profesionales">
+                            <div class="slide-info">
+                                <h3 class="slide-title" data-translate="slide_title_2">Acabados Profesionales</h3>
+                                <p class="slide-desc" data-translate="slide_desc_2">Calidad garantizada</p>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Slide 3 -->
                     <div class="carousel-slide">
-                        <img src="Imagenes/Proyectos/2A.png" alt="Proyecto 2A - Pintura Exterior" loading="lazy">
+                        <div class="slide-content">
+                            <img src="Imagenes/Carrucel/2A.png" alt="Proyecto Exterior">
+                            <div class="slide-info">
+                                <h3 class="slide-title" data-translate="slide_title_3">Proyecto Exterior</h3>
+                                <p class="slide-desc" data-translate="slide_desc_3">Renovación completa</p>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Slide 4 -->
                     <div class="carousel-slide">
-                        <img src="Imagenes/Proyectos/2B.png" alt="Proyecto 2B - Pintura Exterior" loading="lazy">
+                        <div class="slide-content">
+                            <img src="Imagenes/Carrucel/2B.png" alt="Fachadas">
+                            <div class="slide-info">
+                                <h3 class="slide-title" data-translate="slide_title_4">Fachadas</h3>
+                                <p class="slide-desc" data-translate="slide_desc_4">Protección duradera</p>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Slide 5 -->
                     <div class="carousel-slide">
-                        <img src="Imagenes/Proyectos/3A.png" alt="Proyecto 3A - Acabados Especiales" loading="lazy">
+                        <div class="slide-content">
+                            <img src="Imagenes/Carrucel/3A.png" alt="Acabados Especiales">
+                            <div class="slide-info">
+                                <h3 class="slide-title" data-translate="slide_title_5">Acabados Especiales</h3>
+                                <p class="slide-desc" data-translate="slide_desc_5">Diseños únicos</p>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Slide 6 -->
                     <div class="carousel-slide">
-                        <img src="Imagenes/Proyectos/3B.png" alt="Proyecto 3B - Acabados Especiales" loading="lazy">
+                        <div class="slide-content">
+                            <img src="Imagenes/Carrucel/3B.png" alt="Detalles Perfectos">
+                            <div class="slide-info">
+                                <h3 class="slide-title" data-translate="slide_title_6">Detalles Perfectos</h3>
+                                <p class="slide-desc" data-translate="slide_desc_6">Excelencia en cada trazo</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <button class="carousel-button next" aria-label="Siguiente">
-                <i class="fas fa-chevron-right"></i>
-            </button>
+                <!-- Controles del carrusel -->
+                <button class="carousel-control prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-control next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
 
-            <div class="carousel-nav">
-                <button class="carousel-indicator active" data-index="0"></button>
-                <button class="carousel-indicator" data-index="1"></button>
-                <button class="carousel-indicator" data-index="2"></button>
-                <button class="carousel-indicator" data-index="3"></button>
-                <button class="carousel-indicator" data-index="4"></button>
-                <button class="carousel-indicator" data-index="5"></button>
+                <!-- Indicadores -->
+                <div class="carousel-indicators">
+                    <button class="indicator active" data-slide="0"></button>
+                    <button class="indicator" data-slide="1"></button>
+                    <button class="indicator" data-slide="2"></button>
+                    <button class="indicator" data-slide="3"></button>
+                    <button class="indicator" data-slide="4"></button>
+                    <button class="indicator" data-slide="5"></button>
+                </div>
             </div>
         </div>
     </section>
@@ -226,13 +297,20 @@
     </footer>
 
     <!-- Botón flotante de WhatsApp -->
-    <a href="https://wa.me/18644098256" class="whatsapp-btn" target="_blank">
-        <div class="whatsapp-icon">
-            <i class="fab fa-whatsapp"></i>
-        </div>
-        <span class="whatsapp-text">Chat con nosotros</span>
-    </a>
+    <div class="whatsapp-container">
+        <span class="whatsapp-tooltip" data-translate="chat_with_us">Chat con nosotros</span>
+        <a href="https://wa.me/18644098256" class="whatsapp-btn" target="_blank">
+            <div class="whatsapp-icon">
+                <i class="fab fa-whatsapp"></i>
+            </div>
+        </a>
+    </div>
 
+    <!-- Scripts -->
+    <script src="js/translations.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/carousel.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/contact.js"></script>
 </body>
 </html>

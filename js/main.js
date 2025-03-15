@@ -135,8 +135,16 @@ function initializeCarousel() {
 
     let currentSlide = 0;
     
-    // Mostrar el primer slide
+    // Asegurarse de que la primera imagen esté visible
     slides[0].classList.add('active');
+    
+    // Precargar todas las imágenes
+    slides.forEach(slide => {
+        const img = slide.querySelector('img');
+        if (img) {
+            img.loading = "eager"; // Forzar carga inmediata de la primera imagen
+        }
+    });
 
     // Función para actualizar slides
     function updateSlides() {
