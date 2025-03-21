@@ -1,9 +1,19 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CH BROSS Painting - Servicios Profesionales de Pintura</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CH Bross | Premium House Paint – Durable & Long-Lasting</title>
+    
+    <!-- Meta descripción (importante para SEO) -->
+    <meta name="description" content="Buy high-quality house paint from CH Bross. Durable, long-lasting colors for interior and exterior walls. Fast US shipping.">
+
+    <!-- Meta keywords (Google ya no les da tanta importancia, pero otros motores sí) -->
+    <meta name="keywords" content="house paint, premium paint, home painting, durable paint, exterior paint, interior paint, CH Bross">
+    <!-- Meta etiqueta para indexación en Google -->
+    <meta name="robots" content="index, follow">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -27,73 +37,74 @@
         <div class="logo">
             <img src="Logos/logo HC BROSS.png" alt="CH BROSS Painting Logo">
         </div>
-        <div class="nav-links">
-            <a href="#hero" class="nav-link" data-translate="nav_home">Inicio</a>
-            <a href="#conocenos" class="nav-link" data-translate="nav_about">Conócenos</a>
-            <a href="#servicios" class="nav-link" data-translate="nav_services">Servicios</a>
-            <a href="#proyectos" class="nav-link" data-translate="nav_projects">Proyectos</a>
-            <a href="#contacto" class="nav-link" data-translate="nav_contact">Contáctanos</a>
-            <div class="language-selector">
-                <span class="language-text" data-translate="select_language">Seleccione su idioma</span>
-                <div class="language-links">
-                    <a href="#" onclick="changeLanguage('es')" class="lang-link">ESP</a>
-                    <span class="lang-separator">/</span>
-                    <a href="#" onclick="changeLanguage('en')" class="lang-link">ENG</a>
+        
+        <div class="language-selector">
+            <div class="language-links">
+                <a href="#" onclick="changeLanguage('es')" class="lang-link">ESP</a>
+                <span class="lang-separator">/</span>
+                <a href="#" onclick="changeLanguage('en')" class="lang-link active">ENG</a>
+            </div>
+        </div>
+
+        <div class="nav-container">
+            <div class="menu-toggle">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            
+            <div class="nav-content">
+                <div class="nav-links">
+                    <a href="#hero" class="nav-link" data-translate="nav_home">Inicio</a>
+                    <a href="#conocenos" class="nav-link" data-translate="nav_about">Conócenos</a>
+                    <a href="#proyectos" class="nav-link" data-translate="nav_projects">Proyectos</a>
+                    <a href="#contacto" class="nav-link" data-translate="nav_contact">Contáctanos</a>
                 </div>
             </div>
         </div>
-        <button class="menu-toggle" aria-label="Menú">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <div class="menu-overlay"></div>
     </nav>
+    <div class="menu-backdrop"></div>
 
     <!-- Sección Home -->
     <section id="hero" class="hero">
         <div class="hero-content">
             <img src="Logos/logo HC BROSS.png" alt="CH BROSS Painting Logo" class="hero-logo">
-            <h1>Transformamos Espacios con Color</h1>
-            <p>Servicios profesionales de pintura para hogares y negocios</p>
-            <a href="#contacto" class="cta-button">Contáctanos</a>
+            <h1 data-translate="hero_title">We Transform Spaces with Color</h1>
+            <p data-translate="hero_subtitle">Professional painting services for homes and businesses</p>
+            <a href="#contacto" class="cta-button" data-translate="hero_cta">Contact Us</a>
         </div>
     </section>
 
     <!-- Sección Conócenos -->
     <section id="conocenos" class="about">
-        <h2>Conócenos</h2>
+        <h2 data-translate="about_title">About Us</h2>
         <div class="about-content">
             <div class="about-text-container">
                 <div class="about-text">
-                    <p>CH BROSS Painting es tu mejor opción en servicios de pintura 
-                        profesional. Con más de 10 años de experiencia en el mercado, 
-                        nos hemos destacado por brindar soluciones integrales de 
-                        pintura para hogares y negocios. Nuestro equipo de profesionales 
-                        altamente capacitados utiliza materiales de primera calidad y 
-                        técnicas modernas para garantizar resultados excepcionales en 
-                        cada proyecto.</p>
+                    <p data-translate="about_text_full">CH BROSS Painting is your best choice in professional painting services. With more than 10 years of experience in the market, we have stood out for providing comprehensive painting solutions for homes and businesses. Our highly trained team of professionals uses top-quality materials and modern techniques to ensure exceptional results in every project.</p>
                 </div>
                 <div class="about-features">
                     <div class="feature">
                         <i class="fas fa-paint-roller"></i>
-                        <h3>Experiencia</h3>
-                        <p>Años de experiencia en el mercado</p>
+                        <h3 data-translate="feature_experience_title">Experience</h3>
+                        <p data-translate="feature_experience_desc">Years of market experience</p>
                     </div>
                     <div class="feature">
                         <i class="fas fa-star"></i>
-                        <h3>Calidad</h3>
-                        <p>Materiales de primera calidad</p>
+                        <h3 data-translate="feature_quality_title">Quality</h3>
+                        <p data-translate="feature_quality_desc">Premium materials</p>
                     </div>
                     <div class="feature">
                         <i class="fas fa-clock"></i>
-                        <h3>Puntualidad</h3>
-                        <p>Entregas a tiempo</p>
+                        <h3 data-translate="feature_punctuality_title">Punctuality</h3>
+                        <p data-translate="feature_punctuality_desc">On-time delivery</p>
                     </div>
                 </div>
             </div>
             <div class="about-image-container">
-                <img src="Imagenes/Proyectos/conocenos.png" alt="Equipo CH BROSS Painting en acción" loading="lazy">
+                <img src="Imagenes/Proyectos/conocenos.png" alt="CH BROSS Painting Team in Action" loading="lazy">
             </div>
         </div>
     </section>
@@ -272,7 +283,7 @@
             <div class="contact-info">
                 <div class="info-item">
                     <i class="fas fa-phone"></i>
-                    <p>+1 (864) 409-8256</p>
+                    <p>(864) 409-8256</p>
                 </div>
                 <div class="info-item">
                     <i class="fas fa-map-marker-alt"></i>
@@ -311,6 +322,5 @@
     <script src="js/main.js"></script>
     <script src="js/carousel.js"></script>
     <script src="js/menu.js"></script>
-    <script src="js/contact.js"></script>
 </body>
 </html>
