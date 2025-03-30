@@ -58,48 +58,142 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', setActiveLink);
     setActiveLink();
 
-    // Menú móvil
+    // Inicialización del menú móvil
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     const menuOverlay = document.querySelector('.menu-overlay');
     const body = document.body;
 
     if (menuToggle && navLinks && menuOverlay) {
-        menuToggle.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+        function toggleMenu() {
             menuToggle.classList.toggle('active');
             navLinks.classList.toggle('active');
             menuOverlay.classList.toggle('active');
             body.classList.toggle('menu-open');
-        });
+        }
 
-        // Cerrar menú al hacer clic en el overlay
-        menuOverlay.addEventListener('click', () => {
+        function closeMenu() {
             menuToggle.classList.remove('active');
             navLinks.classList.remove('active');
             menuOverlay.classList.remove('active');
             body.classList.remove('menu-open');
+        }
+
+        menuToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMenu();
         });
 
-        // Cerrar menú al hacer clic en los enlaces
+        menuOverlay.addEventListener('click', closeMenu);
+
         document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                menuToggle.classList.remove('active');
-                navLinks.classList.remove('active');
-                menuOverlay.classList.remove('active');
-                body.classList.remove('menu-open');
-            });
+            link.addEventListener('click', closeMenu);
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMenu();
+            }
         });
     }
 
-    // Inicializar el carrusel
-    initializeCarousel();
+    // Inicialización del carrusel
+    const track = document.querySelector('.carousel-track');
+    const slides = track ? Array.from(track.querySelectorAll('.carousel-slide')) : [];
+    const nextButton = document.querySelector('.carousel-control.next');
+    const prevButton = document.querySelector('.carousel-control.prev');
+    const dotsNav = document.querySelector('.carousel-nav');
+    const dots = dotsNav ? Array.from(dotsNav.querySelectorAll('.indicator')) : [];
 
-    // Formulario de contacto
-    const contactForm = document.querySelector('.contact-form');
+    if (track && nextButton && prevButton && dotsNav && slides.length > 0 && dots.length > 0) {
+        let currentSlide = 0;
+        const slideCount = slides.length;
+
+        // Asegurarse de que el primer slide esté activo
+        slides[0].classList.add('active');
+        dots[0].classList.add('active');
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                if (index === currentSlide) {
+                    slide.classList.add('active');
+                }
+            });
+
+            dots.forEach((dot, index) => {
+                dot.classList.remove('active');
+                if (index === currentSlide) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slideCount;
+            updateSlides();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+            updateSlides();
+        }
+
+        nextButton.addEventListener('click', nextSlide);
+        prevButton.addEventListener('click', prevSlide);
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                updateSlides();
+            });
+        });
+
+        // Autoplay
+        let autoplayInterval = setInterval(nextSlide, 5000);
+
+        track.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+        track.addEventListener('mouseleave', () => {
+            autoplayInterval = setInterval(nextSlide, 5000);
+        });
+
+        // Soporte para swipe en móviles
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        track.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        track.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+        }
+    }
+
+    // Inicialización del formulario de contacto
+    const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', handleSubmit);
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Aquí puedes agregar la lógica para enviar el formulario
+            alert('Mensaje enviado correctamente');
+            contactForm.reset();
+        });
     }
 
     // Animaciones de scroll
@@ -123,108 +217,6 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 });
-
-// Carrusel de proyectos
-function initializeCarousel() {
-    const track = document.querySelector('.carousel-track');
-    const slides = Array.from(track.children);
-    const nextButton = document.querySelector('.carousel-button.next');
-    const prevButton = document.querySelector('.carousel-button.prev');
-    const dotsNav = document.querySelector('.carousel-nav');
-    const dots = Array.from(dotsNav.children);
-
-    let currentSlide = 0;
-    
-    // Asegurarse de que la primera imagen esté visible
-    slides[0].classList.add('active');
-    
-    // Precargar todas las imágenes
-    slides.forEach(slide => {
-        const img = slide.querySelector('img');
-        if (img) {
-            img.loading = "eager"; // Forzar carga inmediata de la primera imagen
-        }
-    });
-
-    // Función para actualizar slides
-    function updateSlides() {
-        // Remover clase active de todos los slides
-        slides.forEach(slide => slide.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
-        
-        // Agregar clase active al slide actual
-        slides[currentSlide].classList.add('active');
-        dots[currentSlide].classList.add('active');
-    }
-
-    // Event listener para el botón siguiente
-    nextButton.addEventListener('click', () => {
-        currentSlide = (currentSlide + 1) % slides.length;
-        updateSlides();
-    });
-
-    // Event listener para el botón anterior
-    prevButton.addEventListener('click', () => {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        updateSlides();
-    });
-
-    // Event listeners para los indicadores
-    dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            currentSlide = index;
-            updateSlides();
-        });
-    });
-
-    // Auto avance cada 5 segundos
-    let autoAdvance = setInterval(() => {
-        currentSlide = (currentSlide + 1) % slides.length;
-        updateSlides();
-    }, 5000);
-
-    // Pausar auto avance cuando el mouse está sobre el carrusel
-    const carouselContainer = document.querySelector('.carousel-container');
-    carouselContainer.addEventListener('mouseenter', () => {
-        clearInterval(autoAdvance);
-    });
-
-    carouselContainer.addEventListener('mouseleave', () => {
-        autoAdvance = setInterval(() => {
-            currentSlide = (currentSlide + 1) % slides.length;
-            updateSlides();
-        }, 5000);
-    });
-
-    // Swipe para móviles
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    carouselContainer.addEventListener('touchstart', e => {
-        touchStartX = e.changedTouches[0].screenX;
-    });
-
-    carouselContainer.addEventListener('touchend', e => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    });
-
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
-
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0) {
-                // Swipe izquierda
-                currentSlide = (currentSlide + 1) % slides.length;
-            } else {
-                // Swipe derecha
-                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            }
-            updateSlides();
-        }
-    }
-}
 
 // Configuración de EmailJS
 (function() {

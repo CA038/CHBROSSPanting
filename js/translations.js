@@ -222,63 +222,98 @@ function updateContent() {
     });
 
     // Actualizar específicamente los slides del carrusel
-    document.querySelectorAll('.slide-title').forEach((title, index) => {
-        const key = `slide_title_${index + 1}`;
-        if (translations[currentLanguage][key]) {
-            title.textContent = translations[currentLanguage][key];
-        }
-    });
+    const slideTitles = document.querySelectorAll('.slide-title');
+    const slideDescs = document.querySelectorAll('.slide-desc');
+    
+    if (slideTitles.length > 0) {
+        slideTitles.forEach((title, index) => {
+            const key = `slide_title_${index + 1}`;
+            if (translations[currentLanguage][key]) {
+                title.textContent = translations[currentLanguage][key];
+            }
+        });
+    }
 
-    document.querySelectorAll('.slide-desc').forEach((desc, index) => {
-        const key = `slide_desc_${index + 1}`;
-        if (translations[currentLanguage][key]) {
-            desc.textContent = translations[currentLanguage][key];
-        }
-    });
+    if (slideDescs.length > 0) {
+        slideDescs.forEach((desc, index) => {
+            const key = `slide_desc_${index + 1}`;
+            if (translations[currentLanguage][key]) {
+                desc.textContent = translations[currentLanguage][key];
+            }
+        });
+    }
 
     // Navegación
-    document.querySelectorAll('.nav-link').forEach(link => {
-        const key = link.getAttribute('data-translate');
-        if (key) link.textContent = translations[currentLanguage][key];
-    });
+    const navLinks = document.querySelectorAll('.nav-link');
+    if (navLinks.length > 0) {
+        navLinks.forEach(link => {
+            const key = link.getAttribute('data-translate');
+            if (key && translations[currentLanguage][key]) {
+                link.textContent = translations[currentLanguage][key];
+            }
+        });
+    }
 
     // Hero Section
-    document.querySelector(".hero-content h1").textContent = translations[currentLanguage].hero_title;
-    document.querySelector(".hero-content p").textContent = translations[currentLanguage].hero_subtitle;
-    document.querySelector(".hero-content .cta-button").textContent = translations[currentLanguage].hero_cta;
+    const heroTitle = document.querySelector(".hero-content h1");
+    const heroSubtitle = document.querySelector(".hero-content p");
+    const heroCta = document.querySelector(".hero-content .cta-button");
+    
+    if (heroTitle) heroTitle.textContent = translations[currentLanguage].hero_title;
+    if (heroSubtitle) heroSubtitle.textContent = translations[currentLanguage].hero_subtitle;
+    if (heroCta) heroCta.textContent = translations[currentLanguage].hero_cta;
 
     // About Section
-    document.querySelector("#conocenos h2").textContent = translations[currentLanguage].about_title;
-    document.querySelector(".about-text p").textContent = translations[currentLanguage].about_text_full;
+    const aboutTitle = document.querySelector("#conocenos h2");
+    const aboutText = document.querySelector(".about-text p");
+    
+    if (aboutTitle) aboutTitle.textContent = translations[currentLanguage].about_title;
+    if (aboutText) aboutText.textContent = translations[currentLanguage].about_text_full;
 
     // Features translation
     const features = document.querySelectorAll('.feature');
     if (features.length >= 3) {
-        features[0].querySelector('h3').textContent = translations[currentLanguage].feature_experience_title;
-        features[0].querySelector('p').textContent = translations[currentLanguage].feature_experience_desc;
+        const featureTitles = Array.from(features).map(f => f.querySelector('h3'));
+        const featureDescs = Array.from(features).map(f => f.querySelector('p'));
         
-        features[1].querySelector('h3').textContent = translations[currentLanguage].feature_quality_title;
-        features[1].querySelector('p').textContent = translations[currentLanguage].feature_quality_desc;
+        if (featureTitles[0]) featureTitles[0].textContent = translations[currentLanguage].feature_experience_title;
+        if (featureDescs[0]) featureDescs[0].textContent = translations[currentLanguage].feature_experience_desc;
         
-        features[2].querySelector('h3').textContent = translations[currentLanguage].feature_punctuality_title;
-        features[2].querySelector('p').textContent = translations[currentLanguage].feature_punctuality_desc;
+        if (featureTitles[1]) featureTitles[1].textContent = translations[currentLanguage].feature_quality_title;
+        if (featureDescs[1]) featureDescs[1].textContent = translations[currentLanguage].feature_quality_desc;
+        
+        if (featureTitles[2]) featureTitles[2].textContent = translations[currentLanguage].feature_punctuality_title;
+        if (featureDescs[2]) featureDescs[2].textContent = translations[currentLanguage].feature_punctuality_desc;
     }
 
     // Services Section
-    document.querySelector("#servicios h2").textContent = translations[currentLanguage].services_title;
-    document.querySelector("#proyectos h2").textContent = translations[currentLanguage].projects_title;
-    document.querySelector("#contacto h2").textContent = translations[currentLanguage].contact_title;
+    const servicesTitle = document.querySelector("#servicios h2");
+    const projectsTitle = document.querySelector("#proyectos h2");
+    const contactTitle = document.querySelector("#contacto h2");
+    
+    if (servicesTitle) servicesTitle.textContent = translations[currentLanguage].services_title;
+    if (projectsTitle) projectsTitle.textContent = translations[currentLanguage].projects_title;
+    if (contactTitle) contactTitle.textContent = translations[currentLanguage].contact_title;
 
     // Contact Section
-    document.querySelector("#nombre").placeholder = translations[currentLanguage].contact_name;
-    document.querySelector("#email").placeholder = translations[currentLanguage].contact_email;
-    document.querySelector("#telefono").placeholder = translations[currentLanguage].contact_phone;
-    document.querySelector("#mensaje").placeholder = translations[currentLanguage].contact_message;
-    document.querySelector(".submit-btn").textContent = translations[currentLanguage].contact_send;
+    const nameInput = document.querySelector("#nombre");
+    const emailInput = document.querySelector("#email");
+    const phoneInput = document.querySelector("#telefono");
+    const messageInput = document.querySelector("#mensaje");
+    const submitBtn = document.querySelector(".submit-btn");
+    
+    if (nameInput) nameInput.placeholder = translations[currentLanguage].contact_name;
+    if (emailInput) emailInput.placeholder = translations[currentLanguage].contact_email;
+    if (phoneInput) phoneInput.placeholder = translations[currentLanguage].contact_phone;
+    if (messageInput) messageInput.placeholder = translations[currentLanguage].contact_message;
+    if (submitBtn) submitBtn.textContent = translations[currentLanguage].contact_send;
 
     // Footer & Misc
-    document.querySelector(".whatsapp-text").textContent = translations[currentLanguage].chat_with_us;
-    document.querySelector(".footer p").textContent = `© 2024 CH BROSS Painting. ${translations[currentLanguage].footer_rights}`;
+    const whatsappText = document.querySelector(".whatsapp-text");
+    const footerText = document.querySelector(".footer p");
+    
+    if (whatsappText) whatsappText.textContent = translations[currentLanguage].chat_with_us;
+    if (footerText) footerText.textContent = `© 2024 CH BROSS Painting. ${translations[currentLanguage].footer_rights}`;
 
     // Services Cards
     const serviceCards = document.querySelectorAll('.service-card');
